@@ -4,7 +4,7 @@
   "description": "Take Home Code Challenge",
   "main": "index.js",
   "scripts": {
-    "start": "node src/index.js",
+    "start": "babel-node src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -16,5 +16,11 @@
   "bugs": {
     "url": "https://github.com/antonpolevyy/ferocia-exercise/issues"
   },
-  "homepage": "https://github.com/antonpolevyy/ferocia-exercise#readme"
+  "homepage": "https://github.com/antonpolevyy/ferocia-exercise#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.18.9",
+    "@babel/core": "^7.18.9",
+    "@babel/node": "^7.18.9",
+    "@babel/preset-env": "^7.18.9"
+  }
 }
