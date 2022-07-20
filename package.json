@@ -24,5 +24,8 @@
     "@babel/node": "^7.18.9",
     "@babel/preset-env": "^7.18.9",
     "eslint": "^8.20.0"
+  },
+  "dependencies": {
+    "arg": "^5.0.2"
   }
 }
