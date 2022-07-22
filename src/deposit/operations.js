@@ -29,8 +29,53 @@ const validateInput = (input) => {
   return true;
 };
 
+/* Transform interestPaid from a word term to a number of months */
+const interestPaidToMonths = (interestPaid, investmentTerm = 12) => {
+  switch(interestPaid){
+  case 'Monthly':
+    return 1;
+  case 'Quarterly':
+    return 3;
+  case 'Annually':
+    return 12;
+  case 'At Maturity':
+    return investmentTerm;
+  }
+};
+
 const calculateFinalBalance = (input) => {
-  return 0;
+  const { startDeposit, interestRate, investmentTerm, interestPaid} = input;
+  /* interestRate specified in per cents, so it has to be devided by 100 */
+  const rate = interestRate / 100;
+
+  /* current sum */
+  let balance = startDeposit;
+  /* how many months within one re-investment period */
+  const tMonths = interestPaidToMonths(interestPaid, investmentTerm);
+  /* how many times per year user gets interest payment */
+  const timesPerYear = 12 / tMonths;
+
+  /* iterate as many times as timesPerYear fits into investmentTerm */
+  /* then take the remainder and calculate interest without re-investment */
+  let quotient = Math.floor(investmentTerm/tMonths);
+  const remainder = investmentTerm % tMonths;
+  let interestPerYear, interestPerPeriod;
+  while (quotient > 0) {
+    /* annual interest */
+    interestPerYear = balance * rate;
+    /* periodic interest (end of month / quarter / year) */
+    interestPerPeriod = Math.round(interestPerYear / timesPerYear);
+    balance += interestPerPeriod;
+    quotient -= 1;
+  }
+  /* if there are months left before the next re-investment then calculate their interest too */
+  const remaindingInterest = Math.round(interestPerPeriod * remainder / tMonths);
+  balance += remaindingInterest;
+
+  /* (Optional) round the cents of the final sum */
+  balance = Math.round(balance / 100) * 100;
+
+  return balance;
 };
 
 module.exports = {
