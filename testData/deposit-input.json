@@ -1,0 +1,6 @@
+{
+  "start-deposit": 1000000,
+  "interest-rate": 1.1,
+  "investment-term": 36,
+  "interest-paid": "Monthly"
+}
