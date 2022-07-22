@@ -10,6 +10,12 @@ describe('operationsTest', () => {
     };
     expect(validateInput(correctInput)).toBe(true);
 
+    const wrongVelueInput = {
+      ...correctInput,
+      interestRate: '1.1'
+    }
+    expect(() => validateInput(wrongVelueInput)).toThrow();
+
     const incorrectInput = {
       ...correctInput,
       interestPaid: 'Daily'
