@@ -1,0 +1,1 @@
+export const VALID_INTEREST_PAYMENTS = ['Monthly', 'Quarterly', 'Annually', 'At Maturity'];
